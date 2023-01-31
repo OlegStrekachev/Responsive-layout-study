@@ -1,0 +1,583 @@
+/* Declaring colors */
+:root {
+
+    font-family: 'Open Sans', sans-serif;
+
+    --main-grey-100: #000000;
+    --main-grey-off-black: #141414;
+    --main-grey-80: #333333;
+    --main-grey-70: #464646;
+    --main-grey-60: #666666;
+    --main-grey-40: #999999;
+    --main-grey-20: #cccccc;
+    --main-grey-10: #E5E5E5;
+    --main-grey-5: #F2F2F2;
+
+
+/* @link https://utopia.fyi/type/calculator?c=375,20,1.25,1400,24,1.333,5,2,&s=0.75|0.5|0.25,1.5|2|3|4|6,s-l&g=s,l,xl,12 */
+    
+--step--2: clamp(0.84rem, calc(0.89rem + -0.06vw), 0.88rem);
+--step--1: clamp(1.10rem, calc(1.09rem + 0.04vw), 1.13rem);
+--step-0: clamp(1.38rem, calc(1.33rem + 0.20vw), 1.50rem);
+--step-1: clamp(1.72rem, calc(1.62rem + 0.44vw), 2.00rem);
+--step-2: clamp(2.15rem, calc(1.96rem + 0.81vw), 2.67rem);
+--step-3: clamp(2.69rem, calc(2.37rem + 1.35vw), 3.55rem);
+--step-4: clamp(3.36rem, calc(2.85rem + 2.15vw), 4.74rem);
+--step-5: clamp(4.20rem, calc(3.42rem + 3.30vw), 6.31rem);
+/* @link https://utopia.fyi/space/calculator?c=375,20,1.25,1400,24,1.333,5,2,&s=0.75|0.5|0.25,1.5|2|3|4|6,s-l&g=s,l,xl,12 */
+
+--space-3xs: clamp(0.38rem, calc(0.38rem + 0.00vw), 0.38rem);
+--space-2xs: clamp(0.69rem, calc(0.66rem + 0.10vw), 0.75rem);
+--space-xs: clamp(1.06rem, calc(1.04rem + 0.10vw), 1.13rem);
+--space-s: clamp(1.38rem, calc(1.33rem + 0.20vw), 1.50rem);
+--space-m: clamp(2.06rem, calc(1.99rem + 0.29vw), 2.25rem);
+--space-l: clamp(2.75rem, calc(2.66rem + 0.39vw), 3.00rem);
+--space-xl: clamp(4.13rem, calc(3.99rem + 0.59vw), 4.50rem);
+--space-2xl: clamp(5.50rem, calc(5.32rem + 0.78vw), 6.00rem);
+--space-3xl: clamp(8.25rem, calc(7.98rem + 1.17vw), 9.00rem);
+
+/* One-up pairs */
+--space-3xs-2xs: clamp(0.38rem, calc(0.24rem + 0.59vw), 0.75rem);
+--space-2xs-xs: clamp(0.69rem, calc(0.53rem + 0.68vw), 1.13rem);
+--space-xs-s: clamp(1.06rem, calc(0.90rem + 0.68vw), 1.50rem);
+--space-s-m: clamp(1.38rem, calc(1.05rem + 1.37vw), 2.25rem);
+--space-m-l: clamp(2.06rem, calc(1.72rem + 1.46vw), 3.00rem);
+--space-l-xl: clamp(2.75rem, calc(2.11rem + 2.73vw), 4.50rem);
+--space-xl-2xl: clamp(4.13rem, calc(3.44rem + 2.93vw), 6.00rem);
+--space-2xl-3xl: clamp(5.50rem, calc(4.22rem + 5.46vw), 9.00rem);
+
+/* Custom pairs */
+--space-s-l: clamp(1.38rem, calc(0.78rem + 2.54vw), 3.00rem);
+}
+
+/* END OF ROOT */
+
+select, button,input, .menu-item-highlight {
+    border-radius: calc(var(--space-xs)*0.2);
+}
+
+
+h1 {
+     font-size:  var(--step-5);
+}
+
+h2 {
+    font-size: var(--step-4);
+}
+
+h3 {
+    font-size: var(--step-3);
+}
+
+h4 {
+    font-size: var(--step-2);
+    font-weight: 600;
+    line-height: 125%;
+    
+}
+
+h5 {
+    font-size: var(--step-1);
+}
+
+h6 {
+    font-size: var(--step-0);
+    font-weight: 600;
+    line-height: 150%;
+    color: var(--main-grey-80);
+}
+
+
+
+/* 1. Website typography */
+    /* 1.1 Paragraph typography */
+.paragraph-bold {
+    font-size: calc(var(--step--2)* 1.1);
+    font-weight:700;
+    line-height: calc(var(--space-s) * 0.9);
+    word-spacing: calc(var(--space-3xs)*0.1);
+    color: var(--main-grey-70);
+}
+.paragraph-medium {
+
+    font-size: calc(var(--step--2) * 1.1);
+    font-weight:400;
+    line-height: 145%;
+    word-spacing: calc(var(--space-3xs)*0.1);
+    color: var(--main-grey-60);
+ 
+}
+.paragraph-small {
+    font-size: calc(var(--step--2));
+    font-weight:400;
+    line-height: 150%;
+    color: var(--main-grey-60); 
+ 
+}
+
+/* 
+
+    /* 1.2 Titles typography */
+
+.title-light {
+    text-decoration: none;
+    font-size: calc(var(--step--2)* 1.1);
+    color: var(--main-grey-80);
+    font-weight: 400;
+    white-space: nowrap;
+}
+
+.title-medium {
+    text-decoration: none;
+    font-size: calc(var(--step--2)* 1.1);
+    color: var(--main-grey-80);
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+
+
+/* 2. Website elements */
+
+    /* 2.1  Default button */
+
+
+
+/* Global full-screen overlay */
+
+.overlay-filter {
+    backdrop-filter: blur(4px);
+    position: fixed;
+    bottom: 0;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 0;
+    opacity: 0;
+    background-color: rgba(0, 0, 0, 0.3);
+    pointer-events: none;
+    transition: all 0.3s;
+    margin: 0 auto;
+    overflow: hidden;
+    
+}
+
+.sm-filter-overlay {
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    margin: var(--space-l);
+    height: calc(100% - var(--space-l) * 2);
+    width: calc(100% - var(--space-l) * 2);
+    background-color: white;
+    border-radius: var(--space-xs);
+    overflow: auto;
+}
+
+
+/* Navbar styling **************************************************************/
+
+.navbar-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: absolute;
+    height: 54px;
+    top:0;
+    left:0;
+    right:0;
+    margin: 0 var(--space-l);
+
+}
+.logo-icon {
+    justify-content: flex-start;
+    padding-inline-end: var(--space-xl);
+}
+.logo-icon h6 {
+    font-weight: 600;
+    letter-spacing: var(--space-2xs);
+    color: var(--main-grey-70);
+}
+.navbar-menu {
+    display:  flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+
+.navbar-menu li a {
+    padding: var(--space-3xs) var(--space-2xs);
+    display: block;
+}
+
+/* Modal Sidebar Menu Styling ********************************************/
+
+/* Header is used for navbar-menu 
+mouseenter/leave sliding effect */
+
+.menu-item-highlight {
+    background-color: var(--main-grey-5);
+    position: absolute;
+    opacity: 0;
+    z-index: 1;
+    transition: opacity 0.3s;
+    pointer-events: none;
+    mix-blend-mode: darken;
+ 
+    isolation: isolate;
+    transition-timing-function: cubic-bezier(0.455, 0.03, 0.515, 0.955);
+}
+.global-menu {
+
+    height: 100vh;
+    position: fixed;
+    top:0;
+    right:0;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,.16);
+    opacity: 100;
+    transform: translateX(100%);
+    transition: transform 0.3s ease-out, opacity 0.3s ease-out;
+}
+.global-menu-header {
+    display: flex;
+    justify-content: flex-end;
+    padding: var(--space-xs);
+}
+.global-menu-header > button {
+    border: none;
+    background: none;
+    cursor: pointer;
+    padding: 0;
+}
+.global-menu-content > ul {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-items: flex-start;
+    padding: 0 var(--space-xs);
+}
+.global-menu-content > ul li a {
+    display: inline-flex;
+    white-space: nowrap;
+    padding-bottom: var(--space-xs);
+    padding-right: var(--space-xl);
+    padding-left: var(--space-s);
+}
+
+/* Section 2 - Main Content */
+
+.main-content-wrapper {
+    padding-block-start: calc(var(--space-xs) + 54px);
+    min-height: 100vh;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+}
+.inventory-header {
+    position: sticky;
+    top:0;
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    padding:  var(--space-s) var(--space-l);
+    background: white;
+    box-shadow: 0 var(--space-3xs) var(--main-grey-5);
+}
+.inventory-header h4 {
+    flex-grow: 1;
+}
+.dropdown-menu-wrapper {
+    display: grid;
+    grid-template-columns: 3fr 1fr;
+}
+.inventory-header #sort-by-dropdown {
+    text-decoration: none;
+    white-space: nowrap;
+    padding: var(--space-2xs) 0 var(--space-2xs) var(--space-xs);
+    background-color: var(--main-grey-5);
+    appearance: none;
+    border: none;
+    border: 1px solid transparent;
+    transition: border-color 0.3s;
+    
+}
+
+.inventory-header #sort-by-dropdown:hover {
+    border: 1px solid;
+    border-color: var(--main-grey-20);
+}
+.arrow-down {
+    grid-area: 1 / 2 / 2 / -1 ;
+    background-image: url("data:image/svg+xml,%3Csvg width='12' height='8' viewBox='0 0 12 8' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M6 7.4L0 1.4L1.4 0L6 4.6L10.6 0L12 1.4L6 7.4Z' fill='%23595959'/%3E%3C/svg%3E%0A");
+    background-repeat: no-repeat;
+    background-size: 16px;
+    background-position: center;
+    pointer-events: none;
+    padding-left: var(--space-l-xl);
+}
+
+#sort-by-dropdown {
+    grid-area: 1 / 1 / 2 / -1;
+
+}
+#sort-by-dropdown option {
+    appearance: none;
+
+}
+
+/* grid / tile menu options switch */
+
+.view-options {
+    display: flex;
+    padding-inline-start: var(--space-m);
+   
+}
+
+.view-grid, .view-list  {
+    border-radius: 0;
+   display: flex;
+   border: none;
+   background: none;
+   cursor: pointer;
+   padding: 4px var(--space-xs);
+}
+
+.view-grid {
+    border-right: 1px solid var(--main-grey-20);
+}
+
+
+/**************************** Styling global-menu *******************************/
+
+
+/* Small screens menu */
+
+.small-screen-table {
+    display: none;
+    width: 100%;
+    grid-template-columns: 1fr 1fr;
+    background: white;
+    padding: var(--space-m) 0;
+    gap: var(--space-2xs);
+}
+
+.small-screen-table .dropdown-menu-wrapper {
+    display: none;
+}
+
+.small-screen-table .filter-menu {
+   grid-area: 1 / 1 / 2 / -1;
+    text-decoration: none;
+    background-color: var(--main-grey-5);
+    appearance: none;
+    border: none;
+}
+
+
+/**************************** Styling Sidebar *******************************/
+
+
+/* Sidebar grid rules */
+
+.inventory-sidebar {
+    padding: var(--space-l);
+    width: 386px;
+    background-color: var(--main-grey-5);
+}
+.inventory-sidebar .title-medium, .inventory-sidebar .title-light  {
+     color: var(--main-grey-60);
+}
+.inventory-sidebar-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+    /* Block level grid rules*/
+
+    .filter {
+        display: grid;
+        grid-template-rows: auto;
+        grid-area: auto / 1 / auto / -1;
+        gap: var(--space-2xs);
+        margin-bottom: var(--space-m);
+    }
+
+    /* General input field rules*/
+    
+    .input-filter {
+        justify-self: stretch;
+    }    
+    .input-default > input {
+        width: 100%;
+        padding: var(--space-2xs);
+        appearance: none;
+        border: none;
+        color: var(--main-grey-70);
+    }
+
+    .input-radio > input {
+        margin: 0;
+        display: block;
+        block-size: var(--space-s);
+        inline-size: var(--space-s);
+        appearance: none;
+        border: 1px solid var(--main-grey-70);
+        border-radius: 50%;
+        align-self: center;
+    }
+    .radio-input-container {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: var(--space-3xs);
+    }
+/* Specific input field rules */
+
+    .filter.filter-by-model {
+        grid-template-rows: repeat(5, 1fr);
+        grid-area: auto / 1 / auto / 2;
+    }
+    .filter.filter-by-type {
+        grid-template-rows: repeat(5, 1fr);
+        grid-area: auto / 2 / auto / -1;
+    }
+    .filter.filter-by-trim input {
+        border-radius: calc(var(--space-xs)*0.2);
+    }
+    .filter-by-paint .radio-input-container  {
+        gap: var(--space-s);
+    }
+    .filter-by-paint .radio-input-container img  {
+        width: var(--space-m-l);
+    }      
+/**************************** Styling Inventory-content *******************************/
+
+
+.inventory-content {
+    padding: var(--space-l);
+    width: calc(100% - 386px);
+    box-sizing: border-box;
+    background-color: var(--main-grey-5);
+}
+
+.inventory-content-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    row-gap: var(--space-s);
+    column-gap: var(--space-s);
+    
+}
+
+
+.alert-container {
+    grid-area: 1 / 1 / 2 / -1;
+    display: grid;
+    grid-template-columns: var(--space-s)  1fr var(--space-s);
+    grid-template-rows: 1fr;
+}
+
+.alert-icon {
+    grid-area: 1 / 1 / 2 / 2;
+    align-self: start;
+    justify-self: start;
+    padding-top: 2px;
+}
+
+.alert-text {
+    grid-area: 1 / 2 / 2 / 12;
+    justify-self: start;
+    align-self: start;
+}
+
+
+/**************************** Styling Vehicle card  *******************************/
+
+
+.inventory-card-grid {
+    display: grid;
+    border-radius: var(--space-2xs);
+    grid-template-columns: var(--space-s) repeat(6, 1fr) var(--space-s);
+    grid-template-rows: 0 repeat(4, auto) var(--space-l);
+    background-color: white;
+    row-gap: var(--space-s);
+}
+.inventory-description {
+    grid-area: 2 / 2 / 3 / 6;
+    align-self: start;
+}
+.inventory-price {
+    grid-area: 2 / 5 / 3 / 8;
+    justify-self: end;
+}
+.inventory-price .payment {
+    display: flex;
+    gap: 6px;
+}
+.car-images {
+    grid-area: 3 / 1 / 4 / -1 ;
+}
+.car-images > img {
+    width: 100%;
+}
+
+
+
+.stats {
+    justify-self: stretch;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.stats div:nth-child(2) {
+    white-space: nowrap;
+}
+
+.stats .text-wrap {
+    display: flex;
+    align-items: baseline;
+    gap: 4px;
+}
+
+.stats-left {
+    grid-area: 4 / 2 / 5 / 4;
+    border-right: 1px solid var(--main-grey-20);
+}
+ .stats-center {
+    grid-area: 4 / 4 / 5 / 6;
+    border-right: 1px solid var(--main-grey-20);
+}
+ .stats-right {
+    grid-area: 4 / 6 / 5 / 8;
+}
+
+
+
+.features {
+    grid-area: 5 / 2 / 6 / 8;
+    display: flex;
+    gap: var(--space-xs);
+    justify-content: space-evenly;
+}
+
+.features .features-right, .features .features-left {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3xs);
+    align-items: start;
+
+}
+
+.features .wrapper {
+    display: flex;
+    align-items: baseline;
+    gap: 6px;
+}
+
+
