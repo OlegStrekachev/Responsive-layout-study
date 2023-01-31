@@ -86,10 +86,8 @@ function highlightBox (co, it, hi) {
         highlighter.style.transition = 'opacity 0.3s'
     })
 
-
     items.forEach( i => {
 
-    
         i.addEventListener('mouseenter', function (e) {
 
             highlighter.style.opacity = "100"
