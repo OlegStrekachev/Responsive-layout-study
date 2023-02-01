@@ -28,20 +28,19 @@
 
     .inventory-sidebar {
         display: none;
-    }
-
-   
-   
-    /* .sm-filter-overlay {
-        display: block;
-    }
-    */
-    .sm-filter-overlay .inventory-sidebar {
-        display: block;
-        padding: var(--space-s);
+        padding:var(--space-l); 
+        margin: 0;
         background-color: white;
         width: 100%;
     }
+
+    .close-button-container {
+        display: flex; 
+        justify-content: end;
+        padding: 0   var(--space-xs) var(--space-m) var(--space-xs) ; 
+    }
+ 
+   
 
     .sm-filter-overlay .inventory-sidebar .input-filter input {
    
@@ -82,6 +81,14 @@
 
 
 @media (max-width: 599px) {
+
+    .inventory-sidebar {
+        display: none;
+        padding:var(--space-xs); 
+        margin: 0;
+        background-color: white;
+        width: 100%;
+    }
 
     .inventory-header {
         padding: var(--space-s) var(--space-s); ;

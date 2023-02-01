@@ -167,9 +167,9 @@ h6 {
     position: absolute;
     top: 0;
     left: 0;
-    margin: var(--space-l);
-    height: calc(100% - var(--space-l) * 2);
-    width: calc(100% - var(--space-l) * 2);
+    margin: var(--space-m);
+    height: calc(100% - var(--space-m) * 2);
+    width: calc(100% - var(--space-m) * 2);
     background-color: white;
     border-radius: var(--space-xs);
     overflow: auto;
@@ -249,7 +249,7 @@ mouseenter/leave sliding effect */
     justify-content: flex-end;
     padding: var(--space-xs);
 }
-.global-menu-header > button {
+.global-menu-header > button, .sm-filter-overlay  button  {
     border: none;
     background: none;
     cursor: pointer;
