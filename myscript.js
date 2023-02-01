@@ -118,22 +118,6 @@ highlightBox('.global-menu-content', '.global-menu-content li', '.menu-item-high
 
 // Constructor function on a button "filter click"
 
-
-const modalHtml = document.querySelector('.inventory-sidebar').innerHTML
-
-const ovrlayFilter = document.querySelector('.overlay-filter')
-
-const filterButton = document.querySelector('.dropdown-menu-wrapper .filter-menu')
-console.log(filterButton)
-
-const smallFilterCloseButton = document.querySelector('.sm-filter-overlay button')
-
-const smallOverlayModal = document.querySelector('.sm-filter-overlay')
-
-const overlayContent = document.querySelector('.sm-filter-overlay .inventory-sidebar')
-
-console.log(smallOverlayModal)
-
 // filterButton.addEventListener('click', function() {
 //     const globalMenuCloseOverlayClick = document.querySelector('.overlay-filter');
 //     globalMenuCloseOverlayClick.style.opacity = '100%'
@@ -144,12 +128,29 @@ console.log(smallOverlayModal)
 //     overlayContent.style.display = 'block';
 // })
 
-
+const filterButton = document.querySelector('.dropdown-menu-wrapper .filter-menu')
 let smallFilterMenu = 'closed';
 
+        let modalHtml = document.querySelector('.inventory-sidebar').innerHTML
+
+        let ovrlayFilter 
+        let smallFilterCloseButton 
+        let smallOverlayModal 
+        let overlayContent 
+
+
 function tooggleSmallFilterMenu() {
-    insertHtmlBlock()
+   
     if (smallFilterMenu == 'closed') {
+
+        insertHtmlBlock()
+
+   
+        ovrlayFilter = document.querySelector('.overlay-filter')
+        
+        smallFilterCloseButton = document.querySelector('.sm-filter-overlay button')
+        smallOverlayModal = document.querySelector('.sm-filter-overlay')
+        overlayContent = document.querySelector('.sm-filter-overlay .inventory-sidebar')
        
         document.body.style.overflow = "hidden";
         globalMenuCloseOverlayClick.style.opacity = '100%';
@@ -179,7 +180,7 @@ function tooggleSmallFilterMenu() {
 
         smallFilterMenu = 'closed';
 
-        console.log('closed')
+        smallOverlayModal.remove()
        
     }
 }
@@ -190,12 +191,13 @@ globalMenuCloseOverlayClick.addEventListener('click', function(e) {
 
 
 filterButton.addEventListener('click', function() {
+   
     tooggleSmallFilterMenu()
 })
 
 
 function insertHtmlBlock() {
-    const smallFilterModalHtml = `<div class="sm-filter-overlay">
+    const smallFilterModalHtml = String.raw`<div class="sm-filter-overlay">
 <div class="inventory-sidebar">
     <div class="close-button-container">
    
@@ -336,6 +338,5 @@ function insertHtmlBlock() {
 </div>
 </div>`
 document.body.insertAdjacentHTML('beforeend', smallFilterModalHtml)
-
 }
 
