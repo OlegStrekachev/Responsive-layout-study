@@ -1,7 +1,7 @@
 'use strict'
 
 const globalMenuSelector =document.querySelector('.navbar-menu.right li:nth-child(3) a');
-const globalMenuClose = document.querySelector('.global-menu-header svg');
+const globalMenuClose = document.querySelector('.global-menu-header button');
 const globalMenuCloseOverlayClick = document.querySelector('.overlay-filter');
 const globalMenuBody = document.querySelector('.global-menu');
 
@@ -11,14 +11,19 @@ function tooggleModalMenu() {
     if (globalModalMenu == 'closed') {
         globalMenuBody.style.transform = 'translateX(0)';
         globalMenuBody.style.opacity = '100';
-        globalMenuCloseOverlayClick.style.opacity = '100%';
-        globalMenuCloseOverlayClick.style.pointerEvents = 'inherit';
+        // globalMenuCloseOverlayClick.style.opacity = '100%';
+        // globalMenuCloseOverlayClick.style.pointerEvents = 'inherit';
         globalModalMenu = 'open';
     } else {
+
+        if ( document.querySelector('.experiment')!= null) {
+            document.querySelector('.experiment').remove()
+        }
+        
         globalMenuBody.style.transform = 'translateX(100%)'
         globalMenuBody.style.opacity = '0';
-        globalMenuCloseOverlayClick.style.opacity = '0'
-        globalMenuCloseOverlayClick.style.pointerEvents = 'none';
+        // globalMenuCloseOverlayClick.style.opacity = '0'
+        // globalMenuCloseOverlayClick.style.pointerEvents = 'none';
         globalModalMenu = 'closed';
     }
 }
@@ -34,85 +39,66 @@ globalMenuClose.addEventListener('click', function(e) {
 
 globalMenuCloseOverlayClick.addEventListener('click',  function(e) {
     if (window.innerWidth > 900 ) {tooggleModalMenu() }
-    
 })
 
 
-// Menu links highlight on hover
-
-const navItemHighlighter = document.querySelector('.menu-item-highlight')
-const navBarItems = document.querySelectorAll('.navbar-menu.center .navbar-links, .navbar-menu.right .navbar-links')
-const navBarContainer = document.querySelector('.navbar-container')
-const navMenuContainer = document.querySelector('.navbar-menu')
+// Menu links highlight on hover function
+//  co - container, it - item. Works with lists where container - ul
 
 
-
-// navBarItems.forEach( i => {
-//     i.addEventListener('mouseenter', function (e) {
-
-//         navItemHighlighter.style.opacity = "100"
-
-//         setTimeout(() => {navItemHighlighter.style.transition = 'top 0.3s, left 0.3s, height 0.3s, width 0.3s, opacity 0.3s'}, 300)
-
-//         const l = i.getBoundingClientRect().left;
-//         const t = i.getBoundingClientRect().top;
-//         const w = i.getBoundingClientRect().width;
-//         const h = i.getBoundingClientRect().height;
-
-//         navItemHighlighter.style.left = `${l}px`
-//         navItemHighlighter.style.top = `${t}px`
-//         navItemHighlighter.style.width = `${w}px`
-//         navItemHighlighter.style.height = `${h}px`
-//     })
-// } )
-
-// navBarContainer.addEventListener('mouseleave', function (e) {
-//         navItemHighlighter.style.opacity = "0"
-//         navItemHighlighter.style.transition = 'opacity 0.3s'
-// })
-
-
-// co - container, it - item, hi - highlighter
-
-function highlightBox (co, it, hi) {
+function highlightBox (co, it) {
+    const statements = {
+        navbarCondition: function() {
+            if (document.querySelector('.experiment') == null) 
+            {container.insertAdjacentHTML('afterbegin', `<div class="experiment"></div>`)}
+        },
+        globalMenuCondition: function() {
+            {if (globalModalMenu == 'open' && document.querySelector('.experiment') == null) {
+               container.insertAdjacentHTML('afterbegin', `<div class="experiment"></div>`)
+            }}
+        },
+    }
     const container = document.querySelector(co);
     const items = document.querySelectorAll(it);
-    const highlighter = document.querySelector(hi);
 
-    console.log(items)
-
-    container.addEventListener('mouseleave', function (e) {
-        console.log(`leave`)
-        highlighter.style.opacity = "0"
-        highlighter.style.transition = 'opacity 0.3s'
+    container.addEventListener('mouseleave', function(e) {
+        if ( document.querySelector('.experiment') != null) {
+            document.querySelector('.experiment').remove();
+        }
+        // highlighter.style.opacity = "0"
+        // highlighter.style.transition = 'opacity 0.3s'
     })
-
     items.forEach( i => {
-
-        i.addEventListener('mouseenter', function (e) {
-
-            highlighter.style.opacity = "100"
-
-            setTimeout(() => {highlighter.style.transition = 'top 0.3s, left 0.3s, height 0.3s, width 0.3s, opacity 0.3s'}, 300)
-
+        i.addEventListener('mouseenter', function(e) {
+   
+            if (globalModalMenu == 'closed') { 
+                statements.navbarCondition();
+                } else { 
+                statements.globalMenuCondition()
+            };
+            const experiment = document.querySelector('.experiment')
+            // setTimeout(() => {highlighter.style.transition = 'top 0.3s, left 0.3s, height 0.3s, width 0.3s, opacity 0.3s'}, 300)
             const l = i.getBoundingClientRect().left;
             const t = i.getBoundingClientRect().top;
             const w = i.getBoundingClientRect().width;
             const h = i.getBoundingClientRect().height;
-
-            highlighter.style.left = `${l}px`
-            highlighter.style.top = `${t}px`
-            highlighter.style.width = `${w}px`
-            highlighter.style.height = `${h}px`
+            experiment.style.top = `${t}px`;
+            experiment.style.left  = `${l - container.getBoundingClientRect().left}px`
+            experiment.style.width = `${w}px`
+            experiment.style.height = `${h}px`   
         })
     })
-
 }
 
-highlightBox('.navbar-container', '.navbar-menu.center .navbar-links, .navbar-menu.right .navbar-links', '.menu-item-highlight')
+highlightBox('.navbar-container', '.navbar-menu.center .navbar-links, .navbar-menu.right .navbar-links')
+
+highlightBox ('.global-menu-content', '.global-menu-content li')
 
 
-highlightBox('.global-menu-content', '.global-menu-content li', '.menu-item-highlight')
+
+
+
+
 
 // filter modal on small screens
 
