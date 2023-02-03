@@ -161,8 +161,8 @@ h6 {
     
 }
 
-.sm-filter-overlay {
-    display: none;
+.sm-screen-filter-modal {
+    display: block;
     position: absolute;
     top: 0;
     left: 0;
@@ -218,26 +218,15 @@ h6 {
 mouseenter/leave sliding effect */
 
 
-.experiment {
+.menu-highlighter {
 
     position: absolute;
-    top:0;
-     left:0;
-    background-color: aqua;
-    width: 50px;
-    height: 50px;
-    z-index: -1;
-
-}
-.menu-item-highlight {
     background-color: var(--main-grey-5);
-    position:fixed;
     opacity: 0;
-    z-index: -1;
+    z-index: 0;
     transition: opacity 0.3s;
-    pointer-events: none;
-
     transition-timing-function: cubic-bezier(0.455, 0.03, 0.515, 0.955);
+
 }
 .global-menu {
     z-index: 0;
@@ -250,7 +239,7 @@ mouseenter/leave sliding effect */
     flex-direction: column;
     flex-wrap: nowrap;
     box-shadow: 0 8px 16px 0 rgba(0,0,0,.16);
-    opacity: 100;
+    opacity: 0;
     transform: translateX(100%);
     transition: transform 0.3s ease-out, opacity 0.3s ease-out;
 }
@@ -259,7 +248,13 @@ mouseenter/leave sliding effect */
     justify-content: flex-end;
     padding: var(--space-xs);
 }
-.global-menu-header > button, .sm-filter-overlay  button  {
+
+.global-menu-content {
+    position: relative;
+}
+
+
+.global-menu-header > button, .sm-screen-filter-modal  button  {
     border: none;
     background: none;
     cursor: pointer;
@@ -272,12 +267,11 @@ mouseenter/leave sliding effect */
     justify-items: flex-start;
     padding: 0 var(--space-xs);
 }
-.global-menu-content > ul li a {
+.global-menu-content > ul li{
     display: inline-flex;
     white-space: nowrap;
-    padding-bottom: var(--space-xs);
-    padding-right: var(--space-xl);
-    padding-left: var(--space-s);
+    padding: calc(var(--space-xs) /2) var(--space-xl) calc(var(--space-xs) /2) var(--space-s);
+    z-index: 1;
 }
 
 /* Section 2 - Main Content */
