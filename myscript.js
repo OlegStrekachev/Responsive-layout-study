@@ -15,9 +15,6 @@ function globalOverlayToggle() {
     }
 }
 
-
-
-
 function tooggleModalMenu() {
     if (globalModalMenu == 'closed') {
         globalOverlayToggle()
@@ -47,34 +44,20 @@ document.querySelector('.navbar-menu.right li:nth-child(3) a').addEventListener(
 document.querySelector('.global-menu-header button').addEventListener('click', function(e) {
     tooggleModalMenu() 
 })
-
-
 document.querySelector('.overlay-filter').addEventListener('click',  function(e) {
     console.log('click')
-   
-
-
     if (globalModalMenu != 'closed') {
         tooggleModalMenu()
-      
     }
-
-
     if (document.querySelector('.sm-screen-filter-modal') != null) {
         document.querySelector('.sm-screen-filter-modal').remove();
         globalOverlayToggle()
-
     }
-
-
 })
-
-
 // Menu links highlight on hover function
 //  c - container, i - item. Works with lists where container - ul
 
 function highlightBox (c, i) {
-
     const statements = {
         navbarCondition: function() {
             if (document.querySelector('.menu-highlighter') == null && globalModalMenu == 'closed') 
@@ -92,7 +75,6 @@ function highlightBox (c, i) {
         container: document.querySelector(c),
         items: document.querySelectorAll(i),
     }
-
     statements.items.forEach( i => {
         i.addEventListener('mouseenter', function(e) {
             if (globalModalMenu == 'closed') { 
@@ -101,7 +83,6 @@ function highlightBox (c, i) {
                 statements.globalMenuCondition()
             };
     // Why it is working only this way???????
-
             setTimeout(() => {statements.highlighter.style.transition = 'top 0.15s, left 0.15s, height 0.15s, width 0.15s, opacity 0.3s'}, 300);
             setTimeout(() => {statements.highlighter.style.opacity = '100%'}, 1);
 
@@ -115,8 +96,6 @@ function highlightBox (c, i) {
             statements.highlighter.style.height = `${h}px`   
         })
     })
-
-
     statements.container.addEventListener('mouseleave', function(e) {
 
         // statements.highlighter.style.opacity = "0"
@@ -145,21 +124,9 @@ document.querySelector('.filter-menu').addEventListener('click', function() {
     document.querySelector('.sm-screen-filter-modal button').addEventListener('click', function() {
         document.querySelector('.sm-screen-filter-modal').remove();
         globalOverlayToggle();
-
     })
-
     document.querySelector('.sm-screen-filter-modal .inventory-sidebar').style.display = "block";
 })
-
-// document.querySelector('.overlay-filter').addEventListener('click', function(e) {
-//     tooggleSmallFilterMenu() 
-// })
-
-
-// function tooggleSmallFilterMenu() {
-   
-// }
-
 function insertHtmlBlock() {
     const smallFilterModalHtml = String.raw`<div class="sm-screen-filter-modal"> ${document.querySelector('.inventory-sidebar').outerHTML}</div>`;
     document.querySelector('.overlay-filter').insertAdjacentHTML('afterend', smallFilterModalHtml);
@@ -169,7 +136,129 @@ function insertHtmlBlock() {
     document.querySelector('.sm-screen-filter-modal .inventory-sidebar').insertAdjacentHTML
     ('afterbegin', `<div class = 'close-button-container'> </div>`);
 
-
-    document.querySelector('.close-button-container').insertAdjacentHTML('afterbegin', closeButton)
+    document.querySelector('.close-button-container').insertAdjacentHTML('afterbegin', '<h5>Filter</h5>')
+    document.querySelector('.close-button-container').insertAdjacentHTML('beforeend', closeButton)
 };
 
+// // Inventory view options switch List / Grid
+
+
+
+
+
+
+
+
+
+
+document.querySelector('.view-options .view-list').addEventListener('click', function() {
+
+        switchToListLayout();
+        this.parentElement.querySelectorAll('g').forEach(g => {
+            g.classList.remove('active');
+        })
+        this.querySelector('g').classList.add('active')
+
+})
+
+document.querySelector('.view-options .view-grid').addEventListener('click', function() {
+
+        switchToGridLayout();
+        this.parentElement.querySelectorAll('g').forEach(g => {
+            g.classList.remove('active');
+        })
+        this.querySelector('g').classList.add('active');  
+})
+
+
+
+
+
+
+
+const layoutSwitch = {
+    cards: document.querySelectorAll('.inventory-card'),
+    grid: document.querySelector('.inventory-content-grid'),
+    cardDescription: document.querySelector('.inventory-description'),
+}
+
+function switchToListLayout() {
+
+    layoutSwitch.grid.classList.add('active');
+
+    layoutSwitch.cards.forEach((card, index) => {
+        const verticalGridGap = layoutSwitch.cardDescription.getBoundingClientRect().top - card.getBoundingClientRect().top ;
+
+        let expandStatus;
+
+        collapse();
+
+
+
+        function expand() {
+            card.style.height = `${card.querySelector('.features').getBoundingClientRect().bottom - card.getBoundingClientRect().top + verticalGridGap}px `
+            expandStatus = 'expanded'
+        };
+
+        function collapse() {
+            card.style.height = `${(layoutSwitch.cardDescription.getBoundingClientRect().bottom - card.getBoundingClientRect().top) + verticalGridGap}px`;
+
+            expandStatus = 'collapsed';
+        };
+
+        if (card.querySelector('.card-expand') == null) {
+            card.querySelector('.inventory-price-wrap').insertAdjacentHTML('beforeend', `<div class = 'card-expand title-light'> Show details </div>`)  
+        }
+
+        card.querySelector('.card-expand').addEventListener('click', function() {
+       
+            if (!card.querySelector('.card-expand').classList.contains('active')) {
+                card.querySelector('.card-expand').classList.add('active');
+                expand();
+
+            } else {
+        
+                card.querySelector('.card-expand').classList.remove('active');
+                collapse();
+            }
+        })
+    })
+}
+
+function switchToGridLayout() {
+
+    layoutSwitch.grid.classList.remove('active');
+
+    layoutSwitch.cards.forEach((card, index) => {
+
+        // card.querySelector('.card-expand').remove();
+
+        card.style.height = 'auto';
+
+    
+    })
+
+
+
+}
+
+
+
+
+
+
+// const targetButton = document.querySelector('.view-list g');
+
+// let options = {
+//     attributes: true,
+//     attributeFilter: ['class'],
+// };
+
+// const observer = new MutationObserver(activeDetect);
+
+// function activeDetect (mutations) {
+//     mutations.forEach(mutation => {
+//         if (mutation.target.classList.contains('active')) {switchToListLayout()}
+//     }) 
+// }
+// observer.observe(targetButton, options);

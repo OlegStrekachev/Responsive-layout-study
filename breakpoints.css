@@ -36,8 +36,9 @@
 
     .close-button-container {
         display: flex; 
-        justify-content: end;
-        padding: 0   var(--space-xs) var(--space-m) var(--space-xs) ; 
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom:  var(--space-m); 
     }
  
    
@@ -81,6 +82,16 @@
 
 
 @media (max-width: 599px) {
+
+    .inventory-content {
+
+        padding: var(--space-s)
+
+    } 
+
+    .inventory-description .title-medium {
+        font-size: calc(var(--step--2)); ;
+    }
 
     .inventory-sidebar {
         display: none;

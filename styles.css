@@ -125,6 +125,8 @@ h6 {
     color: var(--main-grey-80);
     font-weight: 400;
     white-space: nowrap;
+
+
 }
 
 .title-medium {
@@ -353,6 +355,16 @@ mouseenter/leave sliding effect */
    padding: 4px var(--space-xs);
 }
 
+.view-grid g, .view-list g  {
+  fill: var(--main-grey-20);
+}
+
+.view-grid g.active, .view-list g.active  {
+    fill: var(--main-grey-80);
+  }
+  
+
+
 .view-grid {
     border-right: 1px solid var(--main-grey-20);
 }
@@ -478,6 +490,12 @@ mouseenter/leave sliding effect */
     
 }
 
+.inventory-content-grid.active {
+    display: grid;
+    grid-template-columns: 1fr;
+    row-gap: var(--space-s);
+    column-gap: var(--space-s);
+}
 
 .alert-container {
     grid-area: 1 / 1 / 2 / -1;
@@ -503,25 +521,33 @@ mouseenter/leave sliding effect */
 /**************************** Styling Vehicle card  *******************************/
 
 
-.inventory-card-grid {
+.inventory-card {
     display: grid;
     border-radius: var(--space-2xs);
     grid-template-columns: var(--space-s) repeat(6, 1fr) var(--space-s);
     grid-template-rows: 0 repeat(4, auto) var(--space-l);
     background-color: white;
     row-gap: var(--space-s);
+    transition: height 0.3s;
+    overflow: hidden;
 }
+
+
 .inventory-description {
     grid-area: 2 / 2 / 3 / 6;
     align-self: start;
 }
-.inventory-price {
+.inventory-price-wrap {
     grid-area: 2 / 5 / 3 / 8;
     justify-self: end;
+    display: flex;
+    flex-direction: column;
+    justify-items: flex-start;
 }
-.inventory-price .payment {
+.inventory-price-wrap .payment {
     display: flex;
     gap: 6px;
+    flex-grow: 1;
 }
 .car-images {
     grid-area: 3 / 1 / 4 / -1 ;
@@ -529,8 +555,6 @@ mouseenter/leave sliding effect */
 .car-images > img {
     width: 100%;
 }
-
-
 
 .stats {
     justify-self: stretch;
@@ -584,4 +608,12 @@ mouseenter/leave sliding effect */
     gap: 6px;
 }
 
+.features .wrapper svg {
+ flex-shrink: 0;
+}
 
+/**************************** Styling Vehicle card - List  *******************************/
+
+.card-expand {
+    cursor: pointer;
+}
