@@ -231,15 +231,10 @@ function switchToGridLayout() {
 
     layoutSwitch.cards.forEach((card, index) => {
 
-        // card.querySelector('.card-expand').remove();
+        card.querySelector('.card-expand').remove();
 
         card.style.height = 'auto';
-
-    
     })
-
-
-
 }
 
 
