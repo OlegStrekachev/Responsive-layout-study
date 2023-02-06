@@ -144,13 +144,6 @@ function insertHtmlBlock() {
 
 
 
-
-
-
-
-
-
-
 document.querySelector('.view-options .view-list').addEventListener('click', function() {
 
         switchToListLayout();
@@ -189,6 +182,18 @@ function switchToListLayout() {
     layoutSwitch.cards.forEach((card, index) => {
         const verticalGridGap = layoutSwitch.cardDescription.getBoundingClientRect().top - card.getBoundingClientRect().top ;
 
+        card.querySelector('.car-images').classList.add('active');
+
+        card.querySelector('.features').classList.add('active');
+
+        card.querySelectorAll('.stats').forEach(i => {
+            i.classList.add('active');
+        })
+
+
+
+
+
         let expandStatus;
 
         collapse();
@@ -208,17 +213,19 @@ function switchToListLayout() {
 
         if (card.querySelector('.card-expand') == null) {
             card.querySelector('.inventory-price-wrap').insertAdjacentHTML('beforeend', `<div class = 'card-expand title-light'> Show details </div>`)  
-        }
+        } 
 
         card.querySelector('.card-expand').addEventListener('click', function() {
        
             if (!card.querySelector('.card-expand').classList.contains('active')) {
                 card.querySelector('.card-expand').classList.add('active');
+                card.querySelector('.card-expand').innerHTML = 'Close details';
                 expand();
 
             } else {
         
                 card.querySelector('.card-expand').classList.remove('active');
+                card.querySelector('.card-expand').innerHTML = 'Show details';
                 collapse();
             }
         })
@@ -228,8 +235,20 @@ function switchToListLayout() {
 function switchToGridLayout() {
 
     layoutSwitch.grid.classList.remove('active');
+    
+    document.querySelectorAll('.stats').forEach(i => {
+        i.classList.remove('active');
+    })
+
+
+
+
 
     layoutSwitch.cards.forEach((card, index) => {
+
+        card.querySelector('.car-images').classList.remove('active');
+
+        card.querySelector('.features').classList.remove('active');
 
         card.querySelector('.card-expand').remove();
 
@@ -238,7 +257,32 @@ function switchToGridLayout() {
 }
 
 
+window.addEventListener('resize', function() {
 
+    if (this.window.innerWidth < 1099) {
+        
+        document.querySelectorAll('.stats').forEach(i => {
+            i.classList.remove('active');
+        })
+        
+        layoutSwitch.cards.forEach((card, index) => {
+    
+            card.querySelector('.car-images').classList.remove('active');
+    
+            card.querySelector('.features').classList.remove('active');
+    
+            card.style.height = 'auto';
+        })
+    } else { 
+        switchToListLayout()
+
+
+
+
+    }
+
+
+})
 
 
 

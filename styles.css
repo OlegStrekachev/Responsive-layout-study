@@ -617,3 +617,35 @@ mouseenter/leave sliding effect */
 .card-expand {
     cursor: pointer;
 }
+
+.car-images.active {
+    grid-area: 3 / 1 / 4 / 5;
+}
+
+.car-images.active img {
+    grid-area: 3 / 1 / 4 / 5;
+}
+
+.stats-left.active {
+    align-self: start;
+    grid-area: 3 / 5 / 4 / 6;
+    border-right: 1px solid var(--main-grey-20);
+}
+ .stats-center.active {
+    align-self: start;
+
+    grid-area: 3 / 6 / 4 / 7;
+    border-right: 1px solid var(--main-grey-20);
+}
+ .stats-right.active {
+    align-self: start;
+    grid-area: 3 / 7 / 4 / 8;
+}
+
+.features.active {
+    align-self: start;
+    transform: translateY(50%);
+    grid-area: 3 / 5 / 4 / 8;
+
+    padding-bottom: var(--space-2xl);
+}
