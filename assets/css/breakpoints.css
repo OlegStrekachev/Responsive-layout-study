@@ -26,6 +26,25 @@
 
     /* Side bar breakpoint */
 
+    #section-1-navbar {
+        padding-left: var(--space-s);
+        padding-right: var(--space-s);
+
+    }
+
+    .navbar-container {
+        padding-left: 0;
+        padding-right: 0;
+    }
+
+    .inventory-header {
+        padding: 0 var(--space-s); ;
+    }
+
+    .inventory-title {
+        padding: var(--space-s) 0;
+    }
+
     .inventory-sidebar {
         display: none;
         padding:var(--space-l); 
@@ -52,11 +71,12 @@
 
     .inventory-content {
         width: 100%;
+        padding: var(--space-l) var(--space-s);
     }
 
     .small-screen-table {
         display: grid;
-        position: sticky;
+        position: relative;
         top: 0px;
 
     }
@@ -70,13 +90,7 @@
         display: none;
     }
 
-    .inventory-header {
-        position: sticky;
-        top: -70px;
-    }
-
     
-
 }
 
 
@@ -101,14 +115,7 @@
         width: 100%;
     }
 
-    .inventory-header {
-        padding: var(--space-s) var(--space-s); ;
-    }
 
-    .navbar-container {
-        margin: 0 var(--space-s);
-
-    }
 
     /* Navbar responivity */
 

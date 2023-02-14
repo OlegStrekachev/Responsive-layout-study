@@ -1,5 +1,53 @@
 'use strict'
 
+// Sticky header
+
+window.addEventListener("scroll", navbarScroll);
+
+function navbarScroll() {
+
+    const inventoryHeader =  document.querySelector('.inventory-header');
+    const placeholderHeight = inventoryHeader.getBoundingClientRect().height;
+    const navBar = document.querySelector('#section-1-navbar');
+    const inventoryTitle = document.querySelector('.inventory-title');
+    const paddingTop = inventoryTitle.getBoundingClientRect().top - inventoryHeader.getBoundingClientRect().top;
+ 
+    if (window.innerWidth >= 900) {
+
+        if ( !inventoryHeader.classList.contains('fixed')  && inventoryHeader.getBoundingClientRect().top <= 0) {
+            navBar.insertAdjacentHTML('beforeend', `<div class = "onScrollPlaceholder"></div>`);
+            document.querySelector('.onScrollPlaceholder').style.height = `${placeholderHeight}px`;
+            document.querySelector('.onScrollPlaceholder').style.width = `100%`;
+            inventoryHeader.classList.add('fixed');
+            
+        } else if (inventoryHeader.classList.contains('fixed') &&  document.querySelector('.navbar-container').getBoundingClientRect().bottom > 0)  {
+         
+            inventoryHeader.classList.remove('fixed');
+            document.querySelector('.onScrollPlaceholder').remove();
+        }
+    }
+
+    else {
+
+         if (!inventoryHeader.classList.contains('fixed') &&  inventoryTitle.getBoundingClientRect().bottom <= 0) { 
+
+            navBar.insertAdjacentHTML('beforeend', `<div class = "onScrollPlaceholder"></div>`);
+            document.querySelector('.onScrollPlaceholder').style.height = `${placeholderHeight}px`;
+            document.querySelector('.onScrollPlaceholder').style.width = `100%`;
+            inventoryHeader.classList.add('fixed');
+            inventoryHeader.style.top = `-${inventoryTitle.getBoundingClientRect().height}px`;
+
+        }  else if (inventoryHeader.classList.contains('fixed') && window.scrollY < placeholderHeight - inventoryTitle.getBoundingClientRect().height) {
+            inventoryHeader.style.top = '0px';
+            inventoryHeader.classList.remove('fixed');
+            document.querySelector('.onScrollPlaceholder').remove();
+        }
+    }
+
+}
+
+
+
 // Global viewport - right positioned sidebar menu.
 
 let globalModalMenu = 'closed'

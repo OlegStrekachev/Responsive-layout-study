@@ -183,12 +183,12 @@ h6 {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    position: absolute;
-    height: 54px;
+    position:relative;
+    height: calc(54px + var(--space-xs));
     top:0;
     left:0;
     right:0;
-    margin: 0 var(--space-l);
+    padding: 0  var(--space-l)  var(--space-xs) var(--space-l);
 
 }
 .logo-icon {
@@ -279,14 +279,13 @@ mouseenter/leave sliding effect */
 /* Section 2 - Main Content */
 
 .main-content-wrapper {
-    padding-block-start: calc(var(--space-xs) + 54px);
     min-height: 100vh;
     display: flex;
     flex-wrap: wrap;
     flex-direction: row;
 }
 .inventory-header {
-    position: sticky;
+    position: relative;
     top:0;
     width: 100%;
     display: flex;
@@ -296,6 +295,18 @@ mouseenter/leave sliding effect */
     background: white;
     box-shadow: 0 var(--space-3xs) var(--main-grey-5);
 }
+
+.inventory-header.fixed {
+    position: fixed;
+    top:0;
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    background: white;
+    box-shadow: 0 var(--space-3xs) var(--main-grey-5);
+}
+
 .inventory-header h4 {
     flex-grow: 1;
 }
