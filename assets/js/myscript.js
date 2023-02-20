@@ -10,40 +10,31 @@ function navbarScroll() {
     const placeholderHeight = inventoryHeader.getBoundingClientRect().height;
     const navBar = document.querySelector('#section-1-navbar');
     const inventoryTitle = document.querySelector('.inventory-title');
-    const paddingTop = inventoryTitle.getBoundingClientRect().top - inventoryHeader.getBoundingClientRect().top;
- 
+    
     if (window.innerWidth >= 900) {
-
         if ( !inventoryHeader.classList.contains('fixed')  && inventoryHeader.getBoundingClientRect().top <= 0) {
             navBar.insertAdjacentHTML('beforeend', `<div class = "onScrollPlaceholder"></div>`);
             document.querySelector('.onScrollPlaceholder').style.height = `${placeholderHeight}px`;
             document.querySelector('.onScrollPlaceholder').style.width = `100%`;
             inventoryHeader.classList.add('fixed');
-            
         } else if (inventoryHeader.classList.contains('fixed') &&  document.querySelector('.navbar-container').getBoundingClientRect().bottom > 0)  {
-         
             inventoryHeader.classList.remove('fixed');
             document.querySelector('.onScrollPlaceholder').remove();
         }
     }
-
-    else {
-
+    else if (window.innerWidth < 900) {
          if (!inventoryHeader.classList.contains('fixed') &&  inventoryTitle.getBoundingClientRect().bottom <= 0) { 
-
             navBar.insertAdjacentHTML('beforeend', `<div class = "onScrollPlaceholder"></div>`);
             document.querySelector('.onScrollPlaceholder').style.height = `${placeholderHeight}px`;
             document.querySelector('.onScrollPlaceholder').style.width = `100%`;
             inventoryHeader.classList.add('fixed');
             inventoryHeader.style.top = `-${inventoryTitle.getBoundingClientRect().height}px`;
-
-        }  else if (inventoryHeader.classList.contains('fixed') && window.scrollY < placeholderHeight - inventoryTitle.getBoundingClientRect().height) {
-            inventoryHeader.style.top = '0px';
+        }  else if (inventoryHeader.classList.contains('fixed') &&  document.querySelector('.onScrollPlaceholder').getBoundingClientRect().bottom - document.querySelector('.small-screen-table').getBoundingClientRect().height > 0) {
+            inventoryHeader.style.top = '0';
             inventoryHeader.classList.remove('fixed');
             document.querySelector('.onScrollPlaceholder').remove();
-        }
+        }  
     }
-
 }
 
 
@@ -72,9 +63,7 @@ function tooggleModalMenu() {
         globalModalMenu = 'open';
     } else {
         globalOverlayToggle()
-            // if (document.querySelector('.experiment') != null) {
-            //     document.querySelector('.experiment').remove()
-            // }        
+   
         document.body.style.overflow = 'auto';
         document.querySelector('.global-menu').style.transform = 'translateX(100%)'
         document.querySelector('.global-menu').style.opacity = '0';
@@ -130,7 +119,7 @@ function highlightBox (c, i) {
                 } else { 
                 statements.globalMenuCondition()
             };
-    // Why it is working only this way???????
+    // A crutch 
             setTimeout(() => {statements.highlighter.style.transition = 'top 0.15s, left 0.15s, height 0.15s, width 0.15s, opacity 0.3s'}, 300);
             setTimeout(() => {statements.highlighter.style.opacity = '100%'}, 1);
 
@@ -145,9 +134,6 @@ function highlightBox (c, i) {
         })
     })
     statements.container.addEventListener('mouseleave', function(e) {
-
-        // statements.highlighter.style.opacity = "0"
-
         if ( document.querySelector('.menu-highlighter') != null) {
             document.querySelector('.menu-highlighter').remove();
         }
@@ -190,8 +176,6 @@ function insertHtmlBlock() {
 
 // // Inventory view options switch List / Grid
 
-
-
 document.querySelector('.view-options .view-list').addEventListener('click', function() {
 
         switchToListLayout();
@@ -212,56 +196,52 @@ document.querySelector('.view-options .view-grid').addEventListener('click', fun
 })
 
 
-
-
-
-
-
 const layoutSwitch = {
     cards: document.querySelectorAll('.inventory-card'),
     grid: document.querySelector('.inventory-content-grid'),
-    cardDescription: document.querySelector('.inventory-description'),
 }
 
 function switchToListLayout() {
 
     layoutSwitch.grid.classList.add('active');
 
-    layoutSwitch.cards.forEach((card, index) => {
-        const verticalGridGap = layoutSwitch.cardDescription.getBoundingClientRect().top - card.getBoundingClientRect().top ;
+    let expandStatus;
 
-        card.querySelector('.car-images').classList.add('active');
+    layoutSwitch.cards.forEach((card) => {
 
-        card.querySelector('.features').classList.add('active');
+         const verticalGridGap = card.querySelector('.inventory-description').getBoundingClientRect().top - card.getBoundingClientRect().top ;
 
-        card.querySelectorAll('.stats').forEach(i => {
-            i.classList.add('active');
-        })
-
-
-
-
-
-        let expandStatus;
-
+        // Card height adjuctments 
+   
         collapse();
-
-
-
+   
+        function collapse() {
+            card.style.height = `${(card.querySelector('.inventory-description').getBoundingClientRect().bottom - card.getBoundingClientRect().top) + verticalGridGap}px`;
+            expandStatus = 'collapsed';
+            console.log(card)
+        };
+    
         function expand() {
-            card.style.height = `${card.querySelector('.features').getBoundingClientRect().bottom - card.getBoundingClientRect().top + verticalGridGap}px `
+            card.style.height = `${card.scrollHeight}px `;
             expandStatus = 'expanded'
         };
 
-        function collapse() {
-            card.style.height = `${(layoutSwitch.cardDescription.getBoundingClientRect().bottom - card.getBoundingClientRect().top) + verticalGridGap}px`;
+        // Card elements position adjustement
 
-            expandStatus = 'collapsed';
-        };
+        card.classList.add('list');
+
+        card.querySelector('.car-images').classList.add('list');
+
+        card.querySelector('.info-wrapper').classList.add('list');
+
+     
+        // Dynamic expand button creation when list layout
 
         if (card.querySelector('.card-expand') == null) {
             card.querySelector('.inventory-price-wrap').insertAdjacentHTML('beforeend', `<div class = 'card-expand title-light'> Show details </div>`)  
         } 
+
+        // Assigning to expand button on click expand/collapse card functionality
 
         card.querySelector('.card-expand').addEventListener('click', function() {
        
@@ -269,9 +249,7 @@ function switchToListLayout() {
                 card.querySelector('.card-expand').classList.add('active');
                 card.querySelector('.card-expand').innerHTML = 'Close details';
                 expand();
-
             } else {
-        
                 card.querySelector('.card-expand').classList.remove('active');
                 card.querySelector('.card-expand').innerHTML = 'Show details';
                 collapse();
@@ -280,57 +258,48 @@ function switchToListLayout() {
     })
 }
 
+
 function switchToGridLayout() {
+
+  
 
     layoutSwitch.grid.classList.remove('active');
     
-    document.querySelectorAll('.stats').forEach(i => {
-        i.classList.remove('active');
-    })
-
-
-
-
-
-    layoutSwitch.cards.forEach((card, index) => {
-
-        card.querySelector('.car-images').classList.remove('active');
-
-        card.querySelector('.features').classList.remove('active');
-
+    layoutSwitch.cards.forEach((card) => {
+        card.classList.remove('list');
+        card.querySelector('.car-images').classList.remove('list');
+        card.querySelector('.info-wrapper').classList.remove('list');
         card.querySelector('.card-expand').remove();
-
         card.style.height = 'auto';
     })
 }
 
 
-window.addEventListener('resize', function() {
+// window.addEventListener('resize', function() {
 
-    if (this.window.innerWidth < 1099) {
+//     if (this.window.innerWidth < 1099) {
         
-        document.querySelectorAll('.stats').forEach(i => {
-            i.classList.remove('active');
-        })
+//         document.querySelectorAll('.stats').forEach(i => {
+//             i.classList.remove('active');
+//         })
         
-        layoutSwitch.cards.forEach((card, index) => {
+//         layoutSwitch.cards.forEach((card, index) => {
     
-            card.querySelector('.car-images').classList.remove('active');
+//             card.querySelector('.car-images').classList.remove('active');
     
-            card.querySelector('.features').classList.remove('active');
+//             card.querySelector('.features').classList.remove('active');
     
-            card.style.height = 'auto';
-        })
-    } else { 
-        switchToListLayout()
+//         })
+//     } else { 
+//         switchToListLayout()
 
 
 
 
-    }
+//     }
 
 
-})
+// })
 
 
 

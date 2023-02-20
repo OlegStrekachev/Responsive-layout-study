@@ -1,7 +1,7 @@
 /* Declaring colors */
 :root {
 
-    font-family: 'Open Sans', sans-serif;
+
 
     --main-grey-100: #000000;
     --main-grey-off-black: #141414;
@@ -165,7 +165,7 @@ h6 {
 
 .sm-screen-filter-modal {
     display: block;
-    position: absolute;
+    position:fixed;
     top: 0;
     left: 0;
     margin: var(--space-m);
@@ -298,13 +298,6 @@ mouseenter/leave sliding effect */
 
 .inventory-header.fixed {
     position: fixed;
-    top:0;
-    width: 100%;
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    background: white;
-    box-shadow: 0 var(--space-3xs) var(--main-grey-5);
 }
 
 .inventory-header h4 {
@@ -534,9 +527,21 @@ mouseenter/leave sliding effect */
 
 .inventory-card {
     display: grid;
+    height: auto;
     border-radius: var(--space-2xs);
     grid-template-columns: var(--space-s) repeat(6, 1fr) var(--space-s);
     grid-template-rows: 0 repeat(4, auto) var(--space-l);
+    background-color: white;
+    row-gap: var(--space-s);
+    transition: height 0.3s;
+    overflow: hidden;
+}
+
+.inventory-card.list {
+    display: grid;
+    border-radius: var(--space-2xs);
+    grid-template-columns: var(--space-s) repeat(6, 1fr) var(--space-s);
+    grid-template-rows: 0 repeat(2, min-content);
     background-color: white;
     row-gap: var(--space-s);
     transition: height 0.3s;
@@ -553,7 +558,6 @@ mouseenter/leave sliding effect */
     justify-self: end;
     display: flex;
     flex-direction: column;
-    justify-items: flex-start;
 }
 .inventory-price-wrap .payment {
     display: flex;
@@ -584,19 +588,28 @@ mouseenter/leave sliding effect */
     gap: 4px;
 }
 
+.info-wrapper {
+    grid-area: 4 / 2 / 5 / 8; 
+}
+
+.stats-wrapper {
+    padding-bottom: var(--space-s);
+    display: flex;
+    width: 100%;
+}
+
 .stats-left {
-    grid-area: 4 / 2 / 5 / 4;
     border-right: 1px solid var(--main-grey-20);
+    flex: 1 1 33.3%
 }
  .stats-center {
-    grid-area: 4 / 4 / 5 / 6;
     border-right: 1px solid var(--main-grey-20);
+    flex: 1 1 33.3%
 }
  .stats-right {
-    grid-area: 4 / 6 / 5 / 8;
+    flex: 1 1 33.3%
+
 }
-
-
 
 .features {
     grid-area: 5 / 2 / 6 / 8;
@@ -629,34 +642,11 @@ mouseenter/leave sliding effect */
     cursor: pointer;
 }
 
-.car-images.active {
+.car-images.list {
     grid-area: 3 / 1 / 4 / 5;
 }
 
-.car-images.active img {
-    grid-area: 3 / 1 / 4 / 5;
-}
-
-.stats-left.active {
-    align-self: start;
-    grid-area: 3 / 5 / 4 / 6;
-    border-right: 1px solid var(--main-grey-20);
-}
- .stats-center.active {
-    align-self: start;
-
-    grid-area: 3 / 6 / 4 / 7;
-    border-right: 1px solid var(--main-grey-20);
-}
- .stats-right.active {
-    align-self: start;
-    grid-area: 3 / 7 / 4 / 8;
-}
-
-.features.active {
-    align-self: start;
-    transform: translateY(50%);
+.info-wrapper.list {
     grid-area: 3 / 5 / 4 / 8;
-
-    padding-bottom: var(--space-2xl);
+    align-self: center;
 }
