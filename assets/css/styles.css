@@ -525,39 +525,50 @@ mouseenter/leave sliding effect */
 /**************************** Styling Vehicle card  *******************************/
 
 
+
+
+.card-wrapper {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 100%;
+}
+
+
+
+
 .inventory-card {
     display: grid;
+    width: 100%;
     height: auto;
-    border-radius: var(--space-2xs);
+    border-radius: var(--space-2xs) var(--space-2xs) 0 0;
     grid-template-columns: var(--space-s) repeat(6, 1fr) var(--space-s);
-    grid-template-rows: 0 repeat(4, auto) var(--space-l);
-    background-color: white;
+    grid-template-rows: 0 auto 0;
     row-gap: var(--space-s);
-    transition: height 0.3s;
+    background-color: white;
     overflow: hidden;
 }
 
 .inventory-card.list {
-    display: grid;
     border-radius: var(--space-2xs);
-    grid-template-columns: var(--space-s) repeat(6, 1fr) var(--space-s);
-    grid-template-rows: 0 repeat(2, min-content);
-    background-color: white;
-    row-gap: var(--space-s);
-    transition: height 0.3s;
-    overflow: hidden;
 }
+
 
 
 .inventory-description {
     grid-area: 2 / 2 / 3 / 6;
     align-self: start;
+   
+    
 }
 .inventory-price-wrap {
     grid-area: 2 / 5 / 3 / 8;
-    justify-self: end;
+   align-items: end;
     display: flex;
+    width: 100%;
     flex-direction: column;
+   
+    
 }
 .inventory-price-wrap .payment {
     display: flex;
@@ -590,6 +601,7 @@ mouseenter/leave sliding effect */
 
 .info-wrapper {
     grid-area: 4 / 2 / 5 / 8; 
+    padding-bottom: var(--space-s);
 }
 
 .stats-wrapper {
@@ -612,7 +624,6 @@ mouseenter/leave sliding effect */
 }
 
 .features {
-    grid-area: 5 / 2 / 6 / 8;
     display: flex;
     gap: var(--space-xs);
     justify-content: space-evenly;
@@ -643,10 +654,50 @@ mouseenter/leave sliding effect */
 }
 
 .car-images.list {
-    grid-area: 3 / 1 / 4 / 5;
+    flex-basis: 50%;
+    padding-bottom: var(--space-s);
+}
+
+.car-images.hidden {
+    display: none;
 }
 
 .info-wrapper.list {
-    grid-area: 3 / 5 / 4 / 8;
-    align-self: center;
+    flex-basis: 50%;
+    display: flex;
+    flex-direction: column;
+   justify-self: stretch;
+    justify-content: center;
 }
+
+.info-wrapper.hidden {
+    display: none;
+}
+
+
+
+.details-wrapper {
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    overflow: hidden;
+    border-radius: 0 0 var(--space-2xs) var(--space-2xs);
+    padding: 0 var(--space-s) 0 var(--space-s);
+    transition: height 0.3s;
+}
+
+.details-wrapper.list {
+    flex-direction: row;
+    align-items: center;
+    overflow: hidden;
+}
+
+.details-wrapper.list > .car-images {
+    flex-basis: 50%;
+}
+
+.details-wrapper > .car-images {
+    flex-basis: 100%;
+}
+
+

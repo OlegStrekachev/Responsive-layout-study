@@ -195,46 +195,51 @@ document.querySelector('.view-options .view-grid').addEventListener('click', fun
         this.querySelector('g').classList.add('active');  
 })
 
-
 const layoutSwitch = {
-    cards: document.querySelectorAll('.inventory-card'),
+    cards: document.querySelectorAll('.card-wrapper'),
     grid: document.querySelector('.inventory-content-grid'),
 }
 
 function switchToListLayout() {
 
+    document.querySelectorAll('.inventory-card').forEach((item) => {
+        item.classList.add('list');
+    })
+    
     layoutSwitch.grid.classList.add('active');
-
-    let expandStatus;
 
     layoutSwitch.cards.forEach((card) => {
 
-         const verticalGridGap = card.querySelector('.inventory-description').getBoundingClientRect().top - card.getBoundingClientRect().top ;
+        card.querySelector('.details-wrapper').style.display = 'none';
+        card.querySelector('.details-wrapper').classList.add('list');
 
-        // Card height adjuctments 
-   
-        collapse();
-   
         function collapse() {
-            card.style.height = `${(card.querySelector('.inventory-description').getBoundingClientRect().bottom - card.getBoundingClientRect().top) + verticalGridGap}px`;
-            expandStatus = 'collapsed';
-            console.log(card)
+
+            card.querySelector('.details-wrapper.list').style.height = `0`;
+            setTimeout(() => {card.querySelector('.details-wrapper.list').style.display = 'none'}, 300);
+            // setTimeout(() => {card.querySelector('.inventory-card').style.borderRadius = `var(--space-2xs)`}, 250);
+
         };
     
         function expand() {
-            card.style.height = `${card.scrollHeight}px `;
-            expandStatus = 'expanded'
+
+            card.querySelector('.details-wrapper.list').style.display = 'flex';
+
+            card.querySelector('.details-wrapper.list').style.height = `auto`;
+
+            let X = card.querySelector('.details-wrapper.list').getBoundingClientRect().height;
+            console.log(X)
+
+            card.querySelector('.details-wrapper.list').style.height = `0`;
+
+            card.querySelector('.details-wrapper.list').style.borderRadius = `0 0 var(--space-2xs) var(--space-2xs)`;
+
+            card.querySelector('.inventory-card').style.borderRadius = `var(--space-2xs) var(--space-2xs) 0 0`
+
+            setTimeout(() => { card.querySelector('.details-wrapper.list').style.height = `${X}px`}, 0);
+
         };
 
-        // Card elements position adjustement
-
-        card.classList.add('list');
-
-        card.querySelector('.car-images').classList.add('list');
-
-        card.querySelector('.info-wrapper').classList.add('list');
-
-     
         // Dynamic expand button creation when list layout
 
         if (card.querySelector('.card-expand') == null) {
@@ -261,60 +266,22 @@ function switchToListLayout() {
 
 function switchToGridLayout() {
 
-  
-
     layoutSwitch.grid.classList.remove('active');
+
+    document.querySelectorAll('.inventory-card').forEach((item) => {
+        item.classList.remove('list');
+    })
     
     layoutSwitch.cards.forEach((card) => {
-        card.classList.remove('list');
-        card.querySelector('.car-images').classList.remove('list');
-        card.querySelector('.info-wrapper').classList.remove('list');
+
+        card.querySelector('.details-wrapper.list').style.display = 'flex';
+
+        if (card.querySelector('.details-wrapper').classList.contains('list')) {
+            card.querySelector('.details-wrapper').classList.remove('list')
+            card.querySelector('.details-wrapper').style.height = `auto`;
+        }
+
         card.querySelector('.card-expand').remove();
-        card.style.height = 'auto';
+       
     })
-}
-
-
-// window.addEventListener('resize', function() {
-
-//     if (this.window.innerWidth < 1099) {
-        
-//         document.querySelectorAll('.stats').forEach(i => {
-//             i.classList.remove('active');
-//         })
-        
-//         layoutSwitch.cards.forEach((card, index) => {
-    
-//             card.querySelector('.car-images').classList.remove('active');
-    
-//             card.querySelector('.features').classList.remove('active');
-    
-//         })
-//     } else { 
-//         switchToListLayout()
-
-
-
-
-//     }
-
-
-// })
-
-
-
-// const targetButton = document.querySelector('.view-list g');
-
-// let options = {
-//     attributes: true,
-//     attributeFilter: ['class'],
-// };
-
-// const observer = new MutationObserver(activeDetect);
-
-// function activeDetect (mutations) {
-//     mutations.forEach(mutation => {
-//         if (mutation.target.classList.contains('active')) {switchToListLayout()}
-//     }) 
-// }
-// observer.observe(targetButton, options);
+};
