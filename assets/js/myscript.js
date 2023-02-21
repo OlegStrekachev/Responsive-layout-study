@@ -217,7 +217,7 @@ function switchToListLayout() {
 
             card.querySelector('.details-wrapper.list').style.height = `0`;
             setTimeout(() => {card.querySelector('.details-wrapper.list').style.display = 'none'}, 300);
-            // setTimeout(() => {card.querySelector('.inventory-card').style.borderRadius = `var(--space-2xs)`}, 250);
+            setTimeout(() => {card.querySelector('.inventory-card').style.borderRadius = `var(--space-2xs)`}, 250);
 
         };
     
