@@ -8,5 +8,5 @@ Things that work:
 - Sticky Navigation menus;
 - Global modal menu toggle; 
 - Inventory Grid / List layout switch;
-- Inventory card in a list layout has an expand option with animation;
+- Inventory cards in the list layout have an expand option with height transition animation;
 - Navigation links and menu items have dynamically created highlighter;
