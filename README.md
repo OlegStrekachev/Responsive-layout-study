@@ -9,4 +9,4 @@ Things that work:
 - Global modal menu toggle; 
 - Inventory Grid / List layout switch;
 - Inventory cards in the list layout have an expand option with height transition animation;
-- Navigation links and menu items have dynamically created highlighter;
+- Navigation links and menu items have a dynamically created highlighter;
