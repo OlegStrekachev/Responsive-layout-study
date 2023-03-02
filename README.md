@@ -2,7 +2,7 @@
 
 This web page is made for educational purposes only. The goal is to take a complex responsive web page design and recreate it's functionality.
 
-![Alt Text](https://i.imgur.com/VRIpBcS.gif)
+![Alt Text](https://i.imgur.com/XkfqnEU.gif)
 
 Things that work:
 
