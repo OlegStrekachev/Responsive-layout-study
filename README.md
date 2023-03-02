@@ -2,6 +2,8 @@
 
 This web page is made for educational purposes only. The goal is to take a complex responsive web page design and recreate it's functionality.
 
+![Alt Text](https://i.imgur.com/VRIpBcS.gif)
+
 Things that work:
 
 - Fully reponsive design. Page layout works on wide screens and smartphones.
